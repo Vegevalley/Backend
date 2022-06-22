@@ -101,4 +101,15 @@ public class VegeContentService {
                     .build();
         }
     }
+
+    public String updateSell(ContentMainRequest contentMainRequest) {
+        if (!jwtTokenProvider.validateToken(contentMainRequest.getAuthorization())) {
+            throw new IllegalArgumentException("잘못된 토큰");
+        }
+        else {
+            VegeContent vegeContent = vegeContentRepository.findByVegeContentId(contentMainRequest.getContentId());
+            vegeContent.setSellCheck(true);
+            return vegeContentRepository.save(vegeContent).getTitle();
+        }
+    }
 }
