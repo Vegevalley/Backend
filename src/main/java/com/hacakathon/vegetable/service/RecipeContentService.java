@@ -12,6 +12,7 @@ import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentCreateRequest;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
+import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import com.hacakathon.vegetable.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,7 @@ public class RecipeContentService {
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final JwtTokenProvider jwtTokenProvider;
+    private final EmdRepository emdRepository;
 
     public String create(RecepiContentCreateRequest recipeContentCreateRequest) {
         String userId = jwtTokenProvider.getUserId(recipeContentCreateRequest.getAuthorization());
@@ -74,9 +76,10 @@ public class RecipeContentService {
     }
 
     public List<RecepiContentListResponse> getContentList(ContentListRequest contentListRequest){
-        List<RecepiContent> allContentList = recipeContentRepository.findAll();
-
-        return RecepiContentListResponse.toDtoList(allContentList);
+        Pageable pageable = PageRequest.of(contentListRequest.getPage()-1, 10);
+        List<RecepiContentListResponse> recepiContentListResponses =
+                RecepiContentListResponse.toDtoList(recipeContentRepository.findByEmd(emdRepository.findByEmdName(contentListRequest.getLocalField()), pageable));
+        return recepiContentListResponses;
     }
 
     public List<RecepiContentListResponse> contentListSearch(ContentListSearchRequest contentListSearchRequest){
@@ -97,5 +100,4 @@ public class RecipeContentService {
                 .commentListResponseList(CommentListResponse.toDtoList(recepiContent.getCommentList()))
                 .build();
     }
-
 }
