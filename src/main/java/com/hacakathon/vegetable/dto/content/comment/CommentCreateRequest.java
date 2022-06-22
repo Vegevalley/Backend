@@ -24,11 +24,12 @@ public class CommentCreateRequest {
     private LocalDateTime dateUpdated;
 
     @Builder
-    public CommentCreateRequest(String author, long recepiId, String commentText,
+    public CommentCreateRequest(String author, long contentId, long recepiId, String commentText,
                                 LocalDateTime dateCreated, LocalDateTime dateUpdated
     ){
         this.authorization = authorization;
         this.author = author;
+        this.contentId = contentId;
         this.recepiId = recepiId;
         this.commentText = commentText;
         this.dateCreated = dateCreated;
