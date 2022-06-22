@@ -5,6 +5,7 @@ import com.hacakathon.vegetable.dto.content.ContentListRequest;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import com.hacakathon.vegetable.dto.content.vote.VoteContentCreateRequest;
 import com.hacakathon.vegetable.dto.content.vote.VoteContentListRequest;
+import com.hacakathon.vegetable.dto.content.vote.VoteContentListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

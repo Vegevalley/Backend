@@ -8,6 +8,7 @@ import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentCreateRequest;
+import com.hacakathon.vegetable.dto.content.vege.VegeContentDto;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +61,7 @@ public class VegeContentController {
     }
 
     @GetMapping("/content/vege/contentMain")
-    public ResponseEntity<RecepiContentDto> contentMain(
+    public ResponseEntity<VegeContentDto> contentMain(
             @RequestBody ContentMainRequest contentMainRequest
     )
     {

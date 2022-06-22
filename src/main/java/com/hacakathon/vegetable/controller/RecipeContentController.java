@@ -10,6 +10,7 @@ import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentCreateRequest;
+import com.hacakathon.vegetable.service.RecipeContentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class RecipeContentController {
     public ResponseEntity<List<CommentListResponse>> getComment(
             @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(commentListRequest);
+        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest);
     }
 
     @GetMapping("/content/recipe/contentList")
@@ -55,9 +56,9 @@ public class RecipeContentController {
 
     @GetMapping("/content/recipe/contentListSerch")
     public ResponseEntity<List<RecepiContentListResponse>> contentSearchList(
-            @RequestBody ContentListSearchRequest contentListSearchRequest,
+            @RequestBody ContentListSearchRequest contentListSearchRequest
     ){
-        return ResponseEntity.ok(recipeContentService.contentListSerch(contentListSearchRequest, searchText));
+        return ResponseEntity.ok(recipeContentService.contentListSearch(contentListSearchRequest));
     }
 
     @GetMapping("/content/recipe/contentMain")
