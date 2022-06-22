@@ -1,4 +1,4 @@
-package domain;
+package com.hacakathon.vegetable.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Getter
@@ -13,29 +14,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="comment")
-public class Comment {
+@Table(name="recepi_content")
+public class RecepiContent {
     @Id
-    @Column(name="COMMENT_ID")
+    @Column(name="RECEPI_CONTENT_ID")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long commentId;
+    private long recepiContentId;
 
     @ManyToOne
     @JoinColumn(name="AUTHOR_ID")
     private User author;
 
-    // 게시글
-    @ManyToOne
-    @JoinColumn(name="CONTENT_ID")
-    private VegeContent vegeContent;
+    @Column(name="TITLE")
+    private String title;
 
-    // 레시피 게시글
-    @ManyToOne
-    @JoinColumn(name="RECEPI_ID")
-    private RecepiContent recepiContent;
-
-    @Column(name="COMMENT_TEXT")
-    private String commentText;
+    @Column(name="MAIN_TEXT")
+    private String mainText;
 
     @Column(name="DATE_CREATED")
     @CreationTimestamp
@@ -44,4 +38,10 @@ public class Comment {
     @Column(name="LAST_UPDATED")
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    @OneToMany(mappedBy = "recepiContent")
+    private List<ImgInfo> imgInfoList;
+
+    @OneToMany(mappedBy = "recepiContent")
+    private List<Comment> commentList;
 }

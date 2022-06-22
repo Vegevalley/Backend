@@ -1,4 +1,4 @@
-package domain;
+package com.hacakathon.vegetable.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -13,22 +13,29 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="vote_content")
-public class VoteContent {
+@Table(name="comment")
+public class Comment {
     @Id
-    @Column(name="GOOD_CONTENT_ID")
+    @Column(name="COMMENT_ID")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long goodContentId;
+    private long commentId;
 
     @ManyToOne
-    @JoinColumn(name="USER_ID")
-    private User user;
+    @JoinColumn(name="AUTHOR_ID")
+    private User author;
 
-    @Column(name="TITLE")
-    private String title;
+    // 게시글
+    @ManyToOne
+    @JoinColumn(name="CONTENT_ID")
+    private VegeContent vegeContent;
 
-    @Column(name = "MAIN_TEXT")
-    private String mainText;
+    // 레시피 게시글
+    @ManyToOne
+    @JoinColumn(name="RECEPI_ID")
+    private RecepiContent recepiContent;
+
+    @Column(name="COMMENT_TEXT")
+    private String commentText;
 
     @Column(name="DATE_CREATED")
     @CreationTimestamp
