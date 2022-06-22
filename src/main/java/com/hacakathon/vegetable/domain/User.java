@@ -2,8 +2,11 @@ package com.hacakathon.vegetable.domain;
 
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -43,4 +46,12 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<VoteContent> voteContentList;
+
+    @Column(name="DATE_CREATED")
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @Column(name="LAST_UPDATED")
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
 }

@@ -1,12 +1,15 @@
 package com.hacakathon.vegetable.dto.content.recepi;
 
 
+import com.hacakathon.vegetable.domain.ImgInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -20,6 +23,8 @@ public class RecepiContentDto {
     private String title;
 
     private String mainText;
+
+    private Image image;
 
     private LocalDateTime dateCreated;
 

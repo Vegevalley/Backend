@@ -12,18 +12,13 @@ import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentCreateRequest;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
-import com.hacakathon.vegetable.repository.CommentRepository;
-import com.hacakathon.vegetable.repository.RecipeContentRepository;
-import com.hacakathon.vegetable.repository.UserRepository;
-import com.hacakathon.vegetable.repository.VegeContentRepository;
+import com.hacakathon.vegetable.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -38,8 +33,9 @@ public class RecipeContentService {
     private final JwtTokenProvider jwtTokenProvider;
 
     public String create(RecepiContentCreateRequest recipeContentCreateRequest) {
+        String userId = jwtTokenProvider.getUserId(recipeContentCreateRequest.getAuthorization());
 
-        User user = userRepository.findByUserId(recipeContentCreateRequest.getAuthorName());
+        User user = userRepository.findByUserId(userId);
 
         recipeContentRepository.save(RecepiContent.builder()
                 .author(user)
@@ -52,44 +48,41 @@ public class RecipeContentService {
 
     public String newComment(CommentCreateRequest commentCreateRequest){
 
-        if(recipeContentRepository.existsByRecepiContentId(commentCreateRequest.getContentId()))
-        {
-            commentRepository.save(Comment.builder()
-                    .author(userRepository.findByUserName(commentCreateRequest.getAuthor()))
-                    .vegeContent(null)
-                    .recepiContent(recipeContentRepository.findByRecepiContentId(commentCreateRequest.getContentId()))
-                    .commentText(commentCreateRequest.getCommentText())
-                    .build()
-            );
-        }else
-        {
-            commentRepository.save(Comment.builder()
-                    .author(userRepository.findByUserName(commentCreateRequest.getAuthor()))
-                    .vegeContent(vegeContentRepository.findByVegeContentId(commentCreateRequest.getContentId()))
-                    .recepiContent(null)
-                    .commentText(commentCreateRequest.getCommentText())
-                    .build()
-            );
-        }
+        String userId = jwtTokenProvider.getUserId(commentCreateRequest.getAuthorization());
+
+        User user = userRepository.findByUserId(userId);
+
+        commentRepository.save(Comment.builder()
+                .author(user)
+                .vegeContent(null)
+                .recepiContent(recipeContentRepository.findByRecepiContentId(commentCreateRequest.getContentId()))
+                .commentText(commentCreateRequest.getCommentText())
+                .build()
+        );
         return "댓글 작성 완료";
     }
 
     public List<CommentListResponse> getComment(CommentListRequest commentListRequest){
-        List<Comment> allCommentList = commentRepository.findAllByCommentId(commentListRequest.getContentId());
+
+        System.out.println("commentListRequest.getContentId() = " + commentListRequest.getContentId());
+
+        List<Comment> allCommentList = commentRepository.findAll();
+
+        System.out.println("allCommentList = " + allCommentList);
 
         return CommentListResponse.toDtoList(allCommentList);
     }
 
     public List<RecepiContentListResponse> getContentList(ContentListRequest contentListRequest){
-        Page<RecepiContent> allContentList = recipeContentRepository.findAll(PageRequest.of(contentListRequest.getPage() -1, 10, Sort.Direction.DESC));
+        List<RecepiContent> allContentList = recipeContentRepository.findAll();
 
-        return RecepiContentListResponse.toDtoList(allContentList.getContent());
+        return RecepiContentListResponse.toDtoList(allContentList);
     }
 
     public List<RecepiContentListResponse> contentListSearch(ContentListSearchRequest contentListSearchRequest){
-        Page<RecepiContent> allContentList = recipeContentRepository.findByTitleContains(contentListSearchRequest.getSearchText(), PageRequest.of(contentListSearchRequest.getPage() -1, 10, Sort.Direction.DESC));
+        List<RecepiContent> allContentList = recipeContentRepository.findByTitleContains(contentListSearchRequest.getSearchText());
 
-        return RecepiContentListResponse.toDtoList(allContentList.getContent());
+        return RecepiContentListResponse.toDtoList(allContentList);
     }
 
     public RecepiContentDto getContentMain (ContentMainRequest contentMainRequest){

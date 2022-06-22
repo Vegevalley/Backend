@@ -8,7 +8,6 @@ import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
-import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentCreateRequest;
 import com.hacakathon.vegetable.service.RecipeContentService;
 import lombok.RequiredArgsConstructor;
@@ -33,18 +32,18 @@ public class RecipeContentController {
         return ResponseEntity.ok(recipeContentService.create(recipeContentCreateRequest));
     }
 
-    @PostMapping("/contene/recipe/comment")
+    @PostMapping("/content/recipe/comment")
     public ResponseEntity<String> newComment(
             @RequestBody CommentCreateRequest commentCreateRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest);
+        return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest));
     }
 
-    @GetMapping("/contene/recipe/comment")
+    @GetMapping("/content/recipe/comment")
     public ResponseEntity<List<CommentListResponse>> getComment(
             @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest);
+        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest));
     }
 
     @GetMapping("/content/recipe/contentList")
@@ -54,7 +53,7 @@ public class RecipeContentController {
         return ResponseEntity.ok(recipeContentService.getContentList(contentListRequest));
     }
 
-    @GetMapping("/content/recipe/contentListSerch")
+    @GetMapping("/content/recipe/contentListSearch")
     public ResponseEntity<List<RecepiContentListResponse>> contentSearchList(
             @RequestBody ContentListSearchRequest contentListSearchRequest
     ){

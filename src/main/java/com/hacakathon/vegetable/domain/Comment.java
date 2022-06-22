@@ -31,10 +31,10 @@ public class Comment {
 
     // 레시피 게시글
     @ManyToOne
-    @JoinColumn(name="RECEPI_ID")
+    @JoinColumn(name="RECIPE_ID")
     private RecepiContent recepiContent;
 
-    @Column(name="COMMENT_TEXT")
+    @Column(name="COMMENT_TEXT", columnDefinition = "LONGTEXT")
     private String commentText;
 
     @Column(name="DATE_CREATED")

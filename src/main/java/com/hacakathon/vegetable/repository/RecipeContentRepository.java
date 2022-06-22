@@ -5,13 +5,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface RecipeContentRepository extends JpaRepository<RecepiContent, Long> {
 
     boolean existsByRecepiContentId(long recepiContentId);
 
     RecepiContent findByRecepiContentId(long recepiContentId);
 
-    Page<RecepiContent> findAll(Pageable pageable);
+    List<RecepiContent> findAll();
 
-    Page<RecepiContent> findByTitleContains(String title, Pageable pageable);
+    List<RecepiContent> findByTitleContains(String title);
 }
