@@ -51,7 +51,4 @@ public class User {
 
     @Column(name="PHONE_NUM", unique = true)
     private String phoneNumber;
-
-    @OneToMany(mappedBy = "user")
-    private List<VoteContent> voteContentList;
 }

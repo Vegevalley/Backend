@@ -26,12 +26,15 @@ public class VoteContentService {
     private final JwtTokenProvider jwtTokenProvider;
 
     public String create(VoteContentCreateRequest voteContentCreateRequest){
+        System.out.println("----------------------------");
 
         String userId = jwtTokenProvider.getUserId(voteContentCreateRequest.getAuthorization());
         User user = userRepository.findByUserId(userId);
 
+        System.out.println("user = " + user);
+
         voteContentRepository.save(VoteContent.builder()
-                .user(userRepository.findByUserId(userId))
+                .user(user)
                 .title(voteContentCreateRequest.getTitle())
                 .mainText(voteContentCreateRequest.getMainText())
                 .build()

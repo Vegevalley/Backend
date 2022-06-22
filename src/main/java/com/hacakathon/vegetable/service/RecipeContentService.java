@@ -78,7 +78,7 @@ public class RecipeContentService {
     public List<RecepiContentListResponse> getContentList(ContentListRequest contentListRequest){
         Pageable pageable = PageRequest.of(contentListRequest.getPage()-1, 10);
         List<RecepiContentListResponse> recepiContentListResponses =
-                RecepiContentListResponse.toDtoList(recipeContentRepository.findByEmd(emdRepository.findByEmdName(contentListRequest.getLocalField()), pageable));
+                RecepiContentListResponse.toDtoList(recipeContentRepository.findAll(pageable).getContent());
         return recepiContentListResponses;
     }
 
