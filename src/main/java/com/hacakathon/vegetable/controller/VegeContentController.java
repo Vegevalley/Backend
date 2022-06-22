@@ -1,7 +1,12 @@
 package com.hacakathon.vegetable.controller;
 
+import com.hacakathon.vegetable.dto.content.ContentListSearchRequest;
+import com.hacakathon.vegetable.dto.content.ContentMainRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentCreateRequest;
 import com.hacakathon.vegetable.dto.content.ContentListRequest;
+import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
+import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
+import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentCreateRequest;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import lombok.RequiredArgsConstructor;
@@ -17,29 +22,49 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VegeContentController {
 
-    private final VegeService vegeService;
+    private final VegeContentService vegeContentService;
 
     @PostMapping("/content/vege/new")
     public ResponseEntity<String> create (
-            @RequestBody String authorization,
             @RequestBody VegeContentCreateRequest vegeContentCreateRequest
     ){
-        return ResponseEntity.ok(vegeService.create(authorization, vegeContentCreateRequest));
+        return ResponseEntity.ok(vegeContentService.create(authorization, vegeContentCreateRequest));
+    }
+
+    @PostMapping("/contene/vege/comment")
+    public ResponseEntity<String> newComment(
+            @RequestBody CommentCreateRequest commentCreateRequest
+    ){
+        return ResponseEntity.ok(vegeContentService.newComment(commentCreateRequest));
     }
 
     @GetMapping("/contene/vege/comment")
-    public ResponseEntity<String> newComment(
-            @RequestBody String authorization,
-            @RequestBody CommentCreateRequest commentCreateRequest
+    public ResponseEntity<List<CommentListResponse>> getComment(
+            @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(vegeService.newComment(authorization, commentCreateRequest));
+        return ResponseEntity.ok(vegeContentService.newComment(commentListRequest));
     }
 
     @GetMapping("/content/vege/contentList")
     public ResponseEntity<List<VegeContentListResponse>> contentList(
-            @RequestBody String authorization,
             @RequestBody ContentListRequest contentListRequest
     ){
-        return ResponseEntity.ok(vegeContentService.getContentList(authorization, contentListRequest));
+        return ResponseEntity.ok(vegeContentService.getContentList(contentListRequest));
     }
+
+    @GetMapping("/content/vege/contentListSerch")
+    public ResponseEntity<List<VegeContentListResponse>> contentSearchList(
+            @RequestBody ContentListSearchRequest contentListSearchRequest
+    ){
+        return ResponseEntity.ok(vegeContentService.contentListSerch(contentListSearchRequest));
+    }
+
+    @GetMapping("/content/vege/contentMain")
+    public ResponseEntity<RecepiContentDto> contentMain(
+            @RequestBody ContentMainRequest contentMainRequest
+    )
+    {
+        return ResponseEntity.ok(vegeContentService.getContentMain(contentMainRequest));
+    }
+
 }

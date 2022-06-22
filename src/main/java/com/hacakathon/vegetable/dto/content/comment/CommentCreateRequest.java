@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 public class CommentCreateRequest {
+    private String authorization;
 
     private String author;
     private long contentId;
@@ -26,6 +27,7 @@ public class CommentCreateRequest {
     public CommentCreateRequest(String author, long contentId, long recepiId, String commentText,
                                 LocalDateTime dateCreated, LocalDateTime dateUpdated
     ){
+        this.authorization = authorization;
         this.author = author;
         this.contentId = contentId;
         this.recepiId = recepiId;

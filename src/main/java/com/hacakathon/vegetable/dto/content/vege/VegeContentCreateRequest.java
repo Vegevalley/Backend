@@ -2,11 +2,17 @@ package com.hacakathon.vegetable.dto.content.vege;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
+@ToString
 public class VegeContentCreateRequest {
+
+    private String authorization;
 
     private String authorName;
 
@@ -27,8 +33,9 @@ public class VegeContentCreateRequest {
     private LocalDateTime dateUpdated;
 
     @Builder
-    public VegeContentCreateRequest(Long contentId, String authorName, String localField, String title, String mainText, String vegetable, Boolean sellCheck,
+    public VegeContentCreateRequest(String authorization, String authorName, String localField, String title, String mainText, String vegetable, Boolean sellCheck,
                                    LocalDateTime dateBuy, LocalDateTime dateCreated, LocalDateTime dateUpdated){
+        this.authorization = authorization;
         this.authorName = authorName;
         this.localField = localField;
         this.title = title;

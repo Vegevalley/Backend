@@ -40,10 +40,10 @@ public class RecepiContentListResponse {
         this.dateUpdated = dateUpdated;
     }
 
-    public static List<RecepiContentListResponse> toDtoList(List<RecepiContent> tradeList){
+    public static List<RecepiContentListResponse> toDtoList(List<RecepiContent> recepiContentList){
 
-        ArrayList<RecepiContentListResponse> transferResponseList = new ArrayList<>();
-        for (RecepiContent recepiContent : tradeList) {
+        ArrayList<RecepiContentListResponse> recepiResponseList = new ArrayList<>();
+        for (RecepiContent recepiContent : recepiContentList) {
             RecepiContentListResponse transferResponse = RecepiContentListResponse.builder()
                     .contentId(recepiContent.getRecepiContentId())
                     .authorName(recepiContent.getAuthor().getUserName())
@@ -53,10 +53,10 @@ public class RecepiContentListResponse {
                     .dateUpdated(recepiContent.getUpdatedDate())
                     .build();
 
-            transferResponseList.add(transferResponse);
+            recepiResponseList.add(transferResponse);
         }
 
-        return transferResponseList;
+        return recepiResponseList;
     }
 
 }
