@@ -34,7 +34,7 @@ public class VoteContentListResponse {
     public VoteContentListResponse(Long contentId, String userName, String title, String mainText,
                                    LocalDateTime dateCreated, LocalDateTime dateUpdated){
         this.contentId = contentId;
-        this.userName = getUserName();
+        this.userName = userName;
         this.title = title;
         this.mainText = mainText;
         this.dateCreated = dateCreated;
@@ -53,7 +53,7 @@ public class VoteContentListResponse {
                     .dateCreated(voteContent.getCreatedDate())
                     .dateUpdated(voteContent.getUpdatedDate())
                     .build();
-
+            System.out.println("voteContentResponse.userName = " + voteContentResponse.userName);
             voteResponseList.add(voteContentResponse);
         }
 

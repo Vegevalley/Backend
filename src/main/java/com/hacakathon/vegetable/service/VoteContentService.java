@@ -44,9 +44,13 @@ public class VoteContentService {
     }
     public List<VoteContentListResponse> getContentList(VoteContentListRequest voteContentListRequest){
         String userId = jwtTokenProvider.getUserId(voteContentListRequest.getAuthorization());
+        System.out.println("userId = " + userId);
         Pageable pageable = PageRequest.of(voteContentListRequest.getPage()-1, 10);
+
         List<VoteContentListResponse> voteContentListResponses =
                 VoteContentListResponse.toDtoList(voteContentRepository.findByUser(userRepository.findByUserId(userId), pageable));
+
+
         return voteContentListResponses;
     }
 }
