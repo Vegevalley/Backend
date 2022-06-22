@@ -24,7 +24,7 @@ public class User {
     private EMD emd;
 
     @Column(name="USER_ID", unique = true)
-    private String userID;
+    private String userId;
 
     @Column(name="USER_NAME", unique = true)
     private String userName;
@@ -43,8 +43,4 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<VoteContent> voteContentList;
-
-    public void changePassword(String password){
-        this.password = password;
-    }
 }
