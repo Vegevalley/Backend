@@ -14,10 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="recepi_content")
+@Table(name="recipe_content")
 public class RecepiContent {
     @Id
-    @Column(name="RECEPI_CONTENT_ID")
+    @Column(name="RECIPE_CONTENT_ID")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long recepiContentId;
 
@@ -28,7 +28,7 @@ public class RecepiContent {
     @Column(name="TITLE")
     private String title;
 
-    @Column(name="MAIN_TEXT")
+    @Column(name="MAIN_TEXT", columnDefinition = "LONGTEXT")
     private String mainText;
 
     @Column(name="DATE_CREATED")

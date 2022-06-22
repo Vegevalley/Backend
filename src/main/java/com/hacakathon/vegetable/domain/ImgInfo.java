@@ -22,7 +22,7 @@ public class ImgInfo {
     private VegeContent vegeContent;
 
     @ManyToOne
-    @JoinColumn(name = "RECEPI_CONTENT_ID")
+    @JoinColumn(name = "RECIPE_CONTENT_ID")
     private RecepiContent recepiContent;
 
     @Column(name = "IMG_EXE")

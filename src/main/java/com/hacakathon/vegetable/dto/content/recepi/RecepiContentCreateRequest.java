@@ -16,8 +16,6 @@ public class RecepiContentCreateRequest {
     private String authorName;
     private String title;
     private String mainText;
-    private LocalDateTime dateCreate;
-    private LocalDateTime dateUpdated;
 
     @Builder
     public RecepiContentCreateRequest(String authorization, String authorName, String title, String mainText,
@@ -26,7 +24,5 @@ public class RecepiContentCreateRequest {
         this.authorName = authorName;
         this.title = title;
         this.mainText = mainText;
-        this.dateCreate = dateCreate;
-        this.dateUpdated = dateUpdated;
     }
 }
