@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VegeContentRepository extends JpaRepository<VegeContent, Long> {
 
-    VegeContent findByVegeContentId(long vegeContentId);
+
 }
