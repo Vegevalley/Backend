@@ -26,7 +26,7 @@ public class VoteContentService {
     private final JwtTokenProvider jwtTokenProvider;
 
     public String create(VoteContentCreateRequest voteContentCreateRequest){
-        
+
         String userId = jwtTokenProvider.getUserId(voteContentCreateRequest.getAuthorization());
         User user = userRepository.findByUserId(userId);
 
