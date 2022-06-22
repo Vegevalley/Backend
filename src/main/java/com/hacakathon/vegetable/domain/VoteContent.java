@@ -1,4 +1,4 @@
-package domain;
+package com.hacakathon.vegetable.domain;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -6,7 +6,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Getter
@@ -14,21 +13,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="recepi_content")
-public class RecepiContent {
+@Table(name="vote_content")
+public class VoteContent {
     @Id
-    @Column(name="RECEPI_CONTENT_ID")
+    @Column(name="GOOD_CONTENT_ID")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long recepiContentId;
+    private long goodContentId;
 
     @ManyToOne
-    @JoinColumn(name="AUTHOR_ID")
-    private User author;
+    @JoinColumn(name="USER_ID")
+    private User user;
 
     @Column(name="TITLE")
     private String title;
 
-    @Column(name="MAIN_TEXT")
+    @Column(name = "MAIN_TEXT")
     private String mainText;
 
     @Column(name="DATE_CREATED")
@@ -38,10 +37,4 @@ public class RecepiContent {
     @Column(name="LAST_UPDATED")
     @UpdateTimestamp
     private LocalDateTime updatedDate;
-
-    @OneToMany(mappedBy = "recepiContent")
-    private List<ImgInfo> imgInfoList;
-
-    @OneToMany(mappedBy = "recepiContent")
-    private List<Comment> commentList;
 }

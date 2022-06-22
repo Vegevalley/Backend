@@ -1,8 +1,10 @@
 package com.hacakathon.vegetable.controller;
 
+import com.hacakathon.vegetable.dto.CommentCreateRequest;
 import com.hacakathon.vegetable.dto.ContentListRequest;
 import com.hacakathon.vegetable.dto.ContentListResponse;
 import com.hacakathon.vegetable.dto.RecipeContentCreateRequest;
+import com.hacakathon.vegetable.repository.RecipeContentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package domain;
+package com.hacakathon.vegetable.domain;
 
 
 import lombok.*;
