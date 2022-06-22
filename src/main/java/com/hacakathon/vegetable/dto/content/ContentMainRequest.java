@@ -1,5 +1,6 @@
 package com.hacakathon.vegetable.dto.content;
 
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,16 +9,15 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString
-public class ContentListRequest {
+public class ContentMainRequest {
 
     private String authorization;
-    private String localField;
-    private int page;
+
+    private long contentId;
 
     @Builder
-    public ContentListRequest(String authorization, String localField, int page){
+    public ContentMainRequest(String authorization, long contentId){
         this.authorization = authorization;
-        this.localField = localField;
-        this.page = page;
+        this.contentId = contentId;
     }
 }

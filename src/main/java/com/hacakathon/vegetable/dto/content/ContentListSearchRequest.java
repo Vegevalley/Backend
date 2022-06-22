@@ -8,15 +8,17 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString
-public class ContentListRequest {
+public class ContentListSearchRequest {
 
     private String authorization;
+    private String searchText;
     private String localField;
     private int page;
 
     @Builder
-    public ContentListRequest(String authorization, String localField, int page){
+    public ContentListSearchRequest(String authorization, String searchText, String localField, int page){
         this.authorization = authorization;
+        this.searchText = searchText;
         this.localField = localField;
         this.page = page;
     }
