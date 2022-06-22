@@ -39,12 +39,12 @@ public class RecipeContentController {
         return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest));
     }
 
-    @GetMapping("/content/recipe/comment")
-    public ResponseEntity<List<CommentListResponse>> getComment(
-            @RequestBody CommentListRequest commentListRequest
-    ){
-        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest));
-    }
+//    @GetMapping("/content/recipe/comment")
+//    public ResponseEntity<List<CommentListResponse>> getComment(
+//            @RequestBody CommentListRequest commentListRequest
+//    ){
+//        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest));
+//    }
 
     @GetMapping("/content/recipe/contentList")
     public ResponseEntity<List<RecepiContentListResponse>> contentList(

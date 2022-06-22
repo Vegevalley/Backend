@@ -87,15 +87,15 @@ public class RecipeContentService {
 
     public RecepiContentDto getContentMain (ContentMainRequest contentMainRequest){
         RecepiContent recepiContent = recipeContentRepository.findByRecepiContentId(contentMainRequest.getContentId());
-        return new RecepiContentDto(
-                recepiContent.getRecepiContentId(),
-                recepiContent.getAuthor().getUserName(),
-                recepiContent.getTitle(),
-                recepiContent.getMainText(),
-                recepiContent.getCreatedDate(),
-                recepiContent.getUpdatedDate(),
-                recepiContent.get
-        );
+        return RecepiContentDto.builder()
+                .contentId(recepiContent.getRecepiContentId())
+                .authorName(recepiContent.getAuthor().getUserName())
+                .title(recepiContent.getTitle())
+                .mainText(recepiContent.getMainText())
+                .dateCreated(recepiContent.getCreatedDate())
+                .dateUpdated(recepiContent.getUpdatedDate())
+                .commentListResponseList(CommentListResponse.toDtoList(recepiContent.getCommentList()))
+                .build();
     }
 
 }

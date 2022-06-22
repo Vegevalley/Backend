@@ -54,12 +54,4 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<VoteContent> voteContentList;
-
-    @Column(name="DATE_CREATED")
-    @CreationTimestamp
-    private LocalDateTime createdDate;
-
-    @Column(name="LAST_UPDATED")
-    @UpdateTimestamp
-    private LocalDateTime updatedDate;
 }
