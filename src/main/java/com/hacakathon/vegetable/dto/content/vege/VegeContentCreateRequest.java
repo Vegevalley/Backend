@@ -4,8 +4,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor
@@ -26,6 +28,7 @@ public class VegeContentCreateRequest {
 
     private Boolean sellCheck;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dateBuy;
 
     private LocalDateTime dateCreated;
@@ -34,7 +37,7 @@ public class VegeContentCreateRequest {
 
     @Builder
     public VegeContentCreateRequest(String authorization, String authorName, String localField, String title, String mainText, String vegetable, Boolean sellCheck,
-                                   LocalDateTime dateBuy, LocalDateTime dateCreated, LocalDateTime dateUpdated){
+                                    LocalDateTime dateBuy, LocalDateTime dateCreated, LocalDateTime dateUpdated){
         this.authorization = authorization;
         this.authorName = authorName;
         this.localField = localField;
