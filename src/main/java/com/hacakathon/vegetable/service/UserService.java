@@ -1,14 +1,12 @@
 package com.hacakathon.vegetable.service;
 
 import com.hacakathon.vegetable.domain.User;
-import com.hacakathon.vegetable.dto.*;
 import com.hacakathon.vegetable.dto.user.UserCreateRequest;
 import com.hacakathon.vegetable.dto.user.UserGetInfoResponse;
 import com.hacakathon.vegetable.dto.user.UserLoginRequest;
 import com.hacakathon.vegetable.dto.user.UserLoginResponse;
 import com.hacakathon.vegetable.repository.EmdRepository;
 import com.hacakathon.vegetable.repository.UserRepository;
-import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

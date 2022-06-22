@@ -16,14 +16,14 @@ import java.time.LocalDateTime;
 public class CommentCreateRequest {
 
     private String author;
-    private String contentId;
-    private String recepiId;
+    private long contentId;
+    private long recepiId;
     private String commentText;
     private LocalDateTime dateCreated;
     private LocalDateTime dateUpdated;
 
     @Builder
-    public CommentCreateRequest(String author, String contentId, String recepiId, String commentText,
+    public CommentCreateRequest(String author, long contentId, long recepiId, String commentText,
                                 LocalDateTime dateCreated, LocalDateTime dateUpdated
     ){
         this.author = author;

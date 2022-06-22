@@ -1,9 +1,11 @@
 package com.hacakathon.vegetable.dto.content.vege;
 
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+@Getter
 public class VegeContentCreateRequest {
 
     private String authorName;
