@@ -1,8 +1,12 @@
 package com.hacakathon.vegetable.controller;
 
+import com.hacakathon.vegetable.dto.content.ContentListSearchRequest;
+import com.hacakathon.vegetable.dto.content.ContentMainRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentCreateRequest;
 import com.hacakathon.vegetable.dto.content.ContentListRequest;
+import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
+import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentCreateRequest;
 import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +26,6 @@ public class VegeContentController {
 
     @PostMapping("/content/vege/new")
     public ResponseEntity<String> create (
-            @RequestBody String authorization,
             @RequestBody VegeContentCreateRequest vegeContentCreateRequest
     ){
         return ResponseEntity.ok(vegeContentService.create(authorization, vegeContentCreateRequest));
@@ -30,34 +33,38 @@ public class VegeContentController {
 
     @PostMapping("/contene/vege/comment")
     public ResponseEntity<String> newComment(
-            @RequestBody String authorization,
             @RequestBody CommentCreateRequest commentCreateRequest
     ){
-        return ResponseEntity.ok(vegeContentService.newComment(authorization, commentCreateRequest));
+        return ResponseEntity.ok(vegeContentService.newComment(commentCreateRequest));
     }
 
     @GetMapping("/contene/vege/comment")
     public ResponseEntity<List<CommentListResponse>> getComment(
-            @RequestBody String authorization,
-            @RequestBody long contentId
+            @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(vegeContentService.newComment(authorization, contentId);
+        return ResponseEntity.ok(vegeContentService.newComment(commentListRequest));
     }
 
     @GetMapping("/content/vege/contentList")
     public ResponseEntity<List<VegeContentListResponse>> contentList(
-            @RequestBody String authorization,
             @RequestBody ContentListRequest contentListRequest
     ){
-        return ResponseEntity.ok(vegeContentService.getContentList(authorization, contentListRequest));
+        return ResponseEntity.ok(vegeContentService.getContentList(contentListRequest));
     }
 
     @GetMapping("/content/vege/contentListSerch")
     public ResponseEntity<List<VegeContentListResponse>> contentSearchList(
-            @RequestBody String authorization,
-            @RequestBody ContentListRequest contentListRequest,
-            @RequestBody String searchText
+            @RequestBody ContentListSearchRequest contentListSearchRequest
     ){
-        return ResponseEntity.ok(recipeContentService.contentListSerch(authorization, contentListRequest, searchText));
+        return ResponseEntity.ok(vegeContentService.contentListSerch(contentListSearchRequest));
     }
+
+    @GetMapping("/content/vege/contentMain")
+    public ResponseEntity<RecepiContentDto> contentMain(
+            @RequestBody ContentMainRequest contentMainRequest
+    )
+    {
+        return ResponseEntity.ok(vegeContentService.getContentMain(contentMainRequest));
+    }
+
 }

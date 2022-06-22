@@ -1,7 +1,10 @@
 package com.hacakathon.vegetable.controller;
 
+import com.hacakathon.vegetable.dto.content.ContentListSearchRequest;
+import com.hacakathon.vegetable.dto.content.ContentMainRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentCreateRequest;
 import com.hacakathon.vegetable.dto.content.ContentListRequest;
+import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
@@ -24,52 +27,45 @@ public class RecipeContentController {
 
     @PostMapping("/content/recipe/new")
     public ResponseEntity<String> create(
-            @RequestBody String authorization,
             @RequestBody RecepiContentCreateRequest recipeContentCreateRequest
     ){
-        return ResponseEntity.ok(recipeContentService.create(authorization, recipeContentCreateRequest));
+        return ResponseEntity.ok(recipeContentService.create(recipeContentCreateRequest));
     }
 
     @PostMapping("/contene/recipe/comment")
     public ResponseEntity<String> newComment(
-            @RequestBody String authorization,
             @RequestBody CommentCreateRequest commentCreateRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(authorization, commentCreateRequest);
+        return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest);
     }
 
     @GetMapping("/contene/recipe/comment")
     public ResponseEntity<List<CommentListResponse>> getComment(
-            @RequestBody String authorization,
-            @RequestBody long contentId
+            @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(authorization, contentId);
+        return ResponseEntity.ok(recipeContentService.newComment(commentListRequest);
     }
 
     @GetMapping("/content/recipe/contentList")
     public ResponseEntity<List<RecepiContentListResponse>> contentList(
-            @RequestBody String authorization,
             @RequestBody ContentListRequest contentListRequest
     ){
-        return ResponseEntity.ok(recipeContentService.getContentList(authorization, contentListRequest));
+        return ResponseEntity.ok(recipeContentService.getContentList(contentListRequest));
     }
 
     @GetMapping("/content/recipe/contentListSerch")
     public ResponseEntity<List<RecepiContentListResponse>> contentSearchList(
-            @RequestBody String authorization,
-            @RequestBody ContentListRequest contentListRequest,
-            @RequestBody String searchText
+            @RequestBody ContentListSearchRequest contentListSearchRequest,
     ){
-        return ResponseEntity.ok(recipeContentService.contentListSerch(authorization, contentListRequest, searchText));
+        return ResponseEntity.ok(recipeContentService.contentListSerch(contentListSearchRequest, searchText));
     }
 
     @GetMapping("/content/recipe/contentMain")
     public ResponseEntity<RecepiContentDto> contentMain(
-            @RequestBody String authorization,
-            @RequestBody long contentId
+            @RequestBody ContentMainRequest contentMainRequest
     )
     {
-        return ResponseEntity.ok(recipeContentService.getContentMain(authorization, contentId));
+        return ResponseEntity.ok(recipeContentService.getContentMain(contentMainRequest));
     }
 
 }

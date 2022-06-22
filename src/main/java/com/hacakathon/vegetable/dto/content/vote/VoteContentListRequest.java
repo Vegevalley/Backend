@@ -1,23 +1,21 @@
-package com.hacakathon.vegetable.dto.content;
+package com.hacakathon.vegetable.dto.content.vote;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.RequestBody;
 
-@Getter
 @NoArgsConstructor
+@Getter
 @ToString
-public class ContentListRequest {
-
+public class VoteContentListRequest {
     private String authorization;
-    private String localField;
     private int page;
 
     @Builder
-    public ContentListRequest(String authorization, String localField, int page){
+    public VoteContentListRequest(String authorization, int page){
         this.authorization = authorization;
-        this.localField = localField;
         this.page = page;
     }
 }
