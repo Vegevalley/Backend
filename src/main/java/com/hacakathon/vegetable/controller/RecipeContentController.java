@@ -8,8 +8,8 @@ import com.hacakathon.vegetable.dto.content.comment.CommentListRequest;
 import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentDto;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentListResponse;
-import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
 import com.hacakathon.vegetable.dto.content.recepi.RecepiContentCreateRequest;
+import com.hacakathon.vegetable.service.RecipeContentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,18 +32,18 @@ public class RecipeContentController {
         return ResponseEntity.ok(recipeContentService.create(recipeContentCreateRequest));
     }
 
-    @PostMapping("/contene/recipe/comment")
+    @PostMapping("/content/recipe/comment")
     public ResponseEntity<String> newComment(
             @RequestBody CommentCreateRequest commentCreateRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest);
+        return ResponseEntity.ok(recipeContentService.newComment(commentCreateRequest));
     }
 
-    @GetMapping("/contene/recipe/comment")
+    @GetMapping("/content/recipe/comment")
     public ResponseEntity<List<CommentListResponse>> getComment(
             @RequestBody CommentListRequest commentListRequest
     ){
-        return ResponseEntity.ok(recipeContentService.newComment(commentListRequest);
+        return ResponseEntity.ok(recipeContentService.getComment(commentListRequest));
     }
 
     @GetMapping("/content/recipe/contentList")
@@ -53,11 +53,11 @@ public class RecipeContentController {
         return ResponseEntity.ok(recipeContentService.getContentList(contentListRequest));
     }
 
-    @GetMapping("/content/recipe/contentListSerch")
+    @GetMapping("/content/recipe/contentListSearch")
     public ResponseEntity<List<RecepiContentListResponse>> contentSearchList(
-            @RequestBody ContentListSearchRequest contentListSearchRequest,
+            @RequestBody ContentListSearchRequest contentListSearchRequest
     ){
-        return ResponseEntity.ok(recipeContentService.contentListSerch(contentListSearchRequest, searchText));
+        return ResponseEntity.ok(recipeContentService.contentListSearch(contentListSearchRequest));
     }
 
     @GetMapping("/content/recipe/contentMain")

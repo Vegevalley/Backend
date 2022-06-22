@@ -27,7 +27,7 @@ public class VoteContent {
     @Column(name="TITLE")
     private String title;
 
-    @Column(name = "MAIN_TEXT")
+    @Column(name = "MAIN_TEXT", columnDefinition = "LONGTEXT")
     private String mainText;
 
     @Column(name="DATE_CREATED")
