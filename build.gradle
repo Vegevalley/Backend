@@ -30,6 +30,12 @@ dependencies {
 
 	// jwt 토큰
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	//멀티 파일
+	implementation 'commons-io:commons-io:2.6'
+
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 }
 
 tasks.named('test') {
