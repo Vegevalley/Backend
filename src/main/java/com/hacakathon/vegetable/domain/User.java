@@ -2,8 +2,11 @@ package com.hacakathon.vegetable.domain;
 
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -31,6 +34,14 @@ public class User {
 
     @Column(name="PASSWORD")
     private String password;
+
+    @Column(name="DATE_CREATED")
+    @CreationTimestamp
+    private LocalDateTime createdDate;
+
+    @Column(name="LAST_UPDATED")
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
 
     @Column(name="ROLE")
     private String role;
