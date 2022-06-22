@@ -26,20 +26,12 @@ public class VoteContentController {
         return ResponseEntity.ok(voteContentService.create(authorization, voteContentCreateRequest));
     }
 
-    @GetMapping("/contene/vote/comment")
-    public ResponseEntity<String> newComment(
-            @RequestBody String authorization,
-            @RequestBody CommentCreateRequest commentCreateRequest
-    ){
-        return ResponseEntity.ok(voteContentService.newComment(authorization, commentCreateRequest));
-    }
-
     @GetMapping("/content/vote/contentList")
     public ResponseEntity<List<VegeContentListResponse>> contentList(
             @RequestBody String authorization,
-            @RequestBody ContentListRequest contentListRequest
+            @RequestBody int page
     ){
-        return ResponseEntity.ok(voteContentService.getContentList(authorization, contentListRequest));
+        return ResponseEntity.ok(voteContentService.getContentList(authorization, page));
 
     }
 }

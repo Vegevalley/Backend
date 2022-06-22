@@ -5,27 +5,34 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
 @ToString
-public class RecipeContentCreateRequest {
+public class RecepiContentDto {
+
+    private Long contentId;
+
     private String authorName;
+
     private String title;
+
     private String mainText;
-    private LocalDateTime dateCreate;
+
+    private LocalDateTime dateCreated;
+
     private LocalDateTime dateUpdated;
 
     @Builder
-    public RecipeContentCreateRequest(String authorName, String title, String mainText,
-                                      LocalDateTime dateCreate, LocalDateTime dateUpdated){
+    public RecepiContentDto(Long contentId, String authorName, String title, String mainText,
+                            LocalDateTime dateCreated, LocalDateTime dateUpdated){
+        this.contentId = contentId;
         this.authorName = authorName;
         this.title = title;
         this.mainText = mainText;
-        this.dateCreate = dateCreate;
+        this.dateCreated = dateCreated;
         this.dateUpdated = dateUpdated;
     }
 }
