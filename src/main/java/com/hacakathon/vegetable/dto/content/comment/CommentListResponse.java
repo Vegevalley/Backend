@@ -7,10 +7,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @NoArgsConstructor
@@ -48,17 +51,32 @@ public class CommentListResponse {
 
         ArrayList<CommentListResponse> commentResponseList = new ArrayList<>();
         for (Comment comment : commentList) {
-            CommentListResponse transferResponse = CommentListResponse.builder()
-                    .commentId(comment.getCommentId())
-                    .authorName(comment.getAuthor().getUserName())
-                    .contentId(comment.getVegeContent().getVegeContentId())
-                    .recepiId(comment.getRecepiContent().getRecepiContentId())
-                    .commentText(comment.getCommentText())
-                    .dateCreated(comment.getCreatedDate())
-                    .dateUpdated(comment.getUpdatedDate())
-                    .build();
+            if (Objects.isNull(comment.getRecepiContent())) {
+                CommentListResponse transferResponse = CommentListResponse.builder()
+                        .commentId(comment.getCommentId())
+                        .authorName(comment.getAuthor().getUserName())
+                        .contentId(comment.getVegeContent().getVegeContentId())
+                        .recepiId(1)
+                        .commentText(comment.getCommentText())
+                        .dateCreated(comment.getCreatedDate())
+                        .dateUpdated(comment.getUpdatedDate())
+                        .build();
 
-            commentResponseList.add(transferResponse);
+                commentResponseList.add(transferResponse);
+            }
+            if (Objects.isNull(comment.getVegeContent())) {
+                CommentListResponse transferResponse = CommentListResponse.builder()
+                        .commentId(comment.getCommentId())
+                        .authorName(comment.getAuthor().getUserName())
+                        .contentId(1)
+                        .recepiId(comment.getRecepiContent().getRecepiContentId())
+                        .commentText(comment.getCommentText())
+                        .dateCreated(comment.getCreatedDate())
+                        .dateUpdated(comment.getUpdatedDate())
+                        .build();
+
+                commentResponseList.add(transferResponse);
+            }
         }
 
         return commentResponseList;

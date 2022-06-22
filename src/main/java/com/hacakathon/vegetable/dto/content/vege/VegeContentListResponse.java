@@ -2,6 +2,7 @@ package com.hacakathon.vegetable.dto.content.vege;
 
 
 import com.hacakathon.vegetable.domain.VegeContent;
+import com.hacakathon.vegetable.dto.content.comment.CommentListResponse;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
