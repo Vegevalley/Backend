@@ -93,7 +93,8 @@ public class RecipeContentService {
                 recepiContent.getTitle(),
                 recepiContent.getMainText(),
                 recepiContent.getCreatedDate(),
-                recepiContent.getUpdatedDate()
+                recepiContent.getUpdatedDate(),
+                recepiContent.get
         );
     }
 

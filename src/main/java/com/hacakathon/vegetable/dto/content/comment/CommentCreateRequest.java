@@ -17,13 +17,14 @@ public class CommentCreateRequest {
     private String authorization;
 
     private String author;
+    private long contentId;
     private long recepiId;
     private String commentText;
     private LocalDateTime dateCreated;
     private LocalDateTime dateUpdated;
 
     @Builder
-    public CommentCreateRequest(String authorization, String author, long recepiId, String commentText,
+    public CommentCreateRequest(String author, long recepiId, String commentText,
                                 LocalDateTime dateCreated, LocalDateTime dateUpdated
     ){
         this.authorization = authorization;
