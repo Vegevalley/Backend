@@ -29,7 +29,7 @@ public class UserGetInfoResponse {
         this.userId = userId;
         this.userName = userName;
         this.phoneNum = phoneNum;
-        this. vote = vote;
+        this.vote = vote;
 
     }
 
