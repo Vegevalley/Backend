@@ -2,6 +2,10 @@ package com.hacakathon.vegetable.service;
 
 import com.hacakathon.vegetable.domain.User;
 import com.hacakathon.vegetable.dto.*;
+import com.hacakathon.vegetable.dto.user.UserCreateRequest;
+import com.hacakathon.vegetable.dto.user.UserGetInfoResponse;
+import com.hacakathon.vegetable.dto.user.UserLoginRequest;
+import com.hacakathon.vegetable.dto.user.UserLoginResponse;
 import com.hacakathon.vegetable.repository.EmdRepository;
 import com.hacakathon.vegetable.repository.UserRepository;
 import io.jsonwebtoken.Jwt;
@@ -51,9 +55,15 @@ public class UserService {
                 .build();
     }
 
-    public String changePassword(UserChangePasswordRequest changedUser) {
-        User user = userRepository.findByUserId(jwtTokenProvider.getUserId(changedUser.getJwtToken()));
-        user.setPassword(passwordEncoder.encode(changedUser.getPassword()));
+    public String changePassword(String authorization, String password) {
+        User user = userRepository.findByUserId(jwtTokenProvider.getUserId(authorization));
+        user.setPassword(passwordEncoder.encode(password));
+        return userRepository.save(user).getUserId();
+    }
+
+    public String changePhoneNum(String authorization, String phoneNum) {
+        User user = userRepository.findByUserId(jwtTokenProvider.getUserId(authorization));
+        user.setPhoneNumber(phoneNum);
         return userRepository.save(user).getUserId();
     }
 }
