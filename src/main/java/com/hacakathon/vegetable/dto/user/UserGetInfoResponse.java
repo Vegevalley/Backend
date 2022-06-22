@@ -22,14 +22,14 @@ public class UserGetInfoResponse {
     private String phoneNum;
 
     @NotNull
-    private String vote;
+    private long vote;
 
     @Builder
-    public UserGetInfoResponse(String userId, String userName, String phoneNum, String vote) {
+    public UserGetInfoResponse(String userId, String userName, String phoneNum, long vote) {
         this.userId = userId;
         this.userName = userName;
         this.phoneNum = phoneNum;
-        this. vote = vote;
+        this.vote = vote;
 
     }
 
