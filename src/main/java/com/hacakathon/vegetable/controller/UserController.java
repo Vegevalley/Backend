@@ -1,7 +1,8 @@
 package com.hacakathon.vegetable.controller;
 
 
-import com.hacakathon.vegetable.dto.*;
+import com.hacakathon.vegetable.dto.content.user.*;
+import com.hacakathon.vegetable.dto.user.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +36,21 @@ public class UserController {
 
 
     @PostMapping("/user/passwordChange")
-    public ResponseEntity<String> changePassword(@RequestBody UserChangePasswordRequest userChangePasswordRequest){
+    public ResponseEntity<String> changePassword(
+            @RequestBody String authorization,
+            @RequestBody String password
+    ){
 
-        return ResponseEntity.ok(userService.changePassword(userChangePasswordRequest));
+        return ResponseEntity.ok(userService.changePassword(authorization, password));
+    }
+
+    @PostMapping("/user/phoneChange")
+    public ResponseEntity<String> phoneChange(
+            @RequestBody String authorization,
+            @RequestBody String phoneNum
+    ){
+
+        return ResponseEntity.ok(userService.changePhoneNum(authorization, phoneNum));
     }
 
 }

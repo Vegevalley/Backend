@@ -1,10 +1,9 @@
 package com.hacakathon.vegetable.controller;
 
-import com.hacakathon.vegetable.dto.CommentCreateRequest;
-import com.hacakathon.vegetable.dto.ContentListRequest;
-import com.hacakathon.vegetable.dto.ContentListResponse;
-import com.hacakathon.vegetable.dto.RecipeContentCreateRequest;
-import com.hacakathon.vegetable.repository.RecipeContentRepository;
+import com.hacakathon.vegetable.dto.content.comment.CommentCreateRequest;
+import com.hacakathon.vegetable.dto.content.ContentListRequest;
+import com.hacakathon.vegetable.dto.content.vege.VegeContentListResponse;
+import com.hacakathon.vegetable.dto.content.recepi.RecipeContentCreateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,22 +17,30 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeContentController {
 
-    private final RecipeContentRepository recipeContentRepository;
+    private final RecipeContentService recipeContentService;
 
     @PostMapping("/content/recipe/new")
-    public ResponseEntity<String> create(@RequestBody RecipeContentCreateRequest recipeContentCreateRequest){
-        return ResponseEntity.ok(recipeContentRepository.create(recipeContentCreateRequest));
+    public ResponseEntity<String> create(
+            @RequestBody String authorization,
+            @RequestBody RecipeContentCreateRequest recipeContentCreateRequest
+    ){
+        return ResponseEntity.ok(recipeContentService.create(authorization, recipeContentCreateRequest));
     }
 
     @GetMapping("/contene/recipe/comment")
-    public ResponseEntity<String> newComment(@RequestBody CommentCreateRequest commentCreateRequest){
-        return ResponseEntity.ok(recipeContentRepository.newComment(commentCreateRequest);
+    public ResponseEntity<String> newComment(
+            @RequestBody String authorization,
+            @RequestBody CommentCreateRequest commentCreateRequest
+    ){
+        return ResponseEntity.ok(recipeContentService.newComment(authorization, commentCreateRequest);
     }
 
     @GetMapping("/content/recipe/contentList")
-    public ResponseEntity<List<ContentListResponse>> contentList(@RequestBody ContentListRequest contentListRequest){
-        return ResponseEntity.ok(recipeContentRepository.getContentList(page));
-
+    public ResponseEntity<List<VegeContentListResponse>> contentList(
+            @RequestBody String authorization,
+            @RequestBody ContentListRequest contentListRequest
+    ){
+        return ResponseEntity.ok(recipeContentService.getContentList(authorization, contentListRequest));
     }
 
 
