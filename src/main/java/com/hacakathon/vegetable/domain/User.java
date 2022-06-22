@@ -43,4 +43,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<VoteContent> voteContentList;
+
+    public void changePassword(String password){
+        this.password = password;
+    }
 }

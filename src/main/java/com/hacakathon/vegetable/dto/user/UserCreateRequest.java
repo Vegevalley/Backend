@@ -1,4 +1,4 @@
-package com.hacakathon.vegetable.dto;
+package com.hacakathon.vegetable.dto.user;
 
 
 import com.sun.istack.NotNull;
@@ -10,28 +10,29 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @ToString
-public class UserGetInfoResponse {
+public class UserCreateRequest {
 
     @NotNull
     private String userId;
 
     @NotNull
+    private String password;
+
+    @NotNull
     private String userName;
+
+    @NotNull
+    private String localField;
 
     @NotNull
     private String phoneNum;
 
-    @NotNull
-    private String vote;
-
     @Builder
-    public UserGetInfoResponse(String userId, String userName, String phoneNum, String vote) {
+    public UserCreateRequest(String userId, String password, String userName, String localField, String phoneNum){
         this.userId = userId;
+        this.password = password;
         this.userName = userName;
+        this.localField = localField;
         this.phoneNum = phoneNum;
-        this. vote = vote;
-
     }
-
-
 }

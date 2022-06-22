@@ -1,4 +1,4 @@
-package com.hacakathon.vegetable.dto;
+package com.hacakathon.vegetable.dto.user;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;

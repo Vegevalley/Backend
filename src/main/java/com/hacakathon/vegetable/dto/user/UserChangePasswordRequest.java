@@ -1,4 +1,4 @@
-package com.hacakathon.vegetable.dto;
+package com.hacakathon.vegetable.dto.user;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;
@@ -13,14 +13,10 @@ import org.apache.catalina.User;
 public class UserChangePasswordRequest {
 
     @NotNull
-    String jwtToken;
-
-    @NotNull
     String password;
 
     @Builder
     public UserChangePasswordRequest(String jwtToken, String password){
-        this.jwtToken = jwtToken;
         this. password = password;
     }
 }
