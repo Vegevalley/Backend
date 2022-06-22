@@ -52,10 +52,10 @@ public class VegeContentListResponse {
         this.dateUpdated = dateUpdated;
     }
 
-    public static List<VegeContentListResponse> toDtoList(List<VegeContent> tradeList){
+    public static List<VegeContentListResponse> toDtoList(List<VegeContent> vegeContentList){
 
-        ArrayList<VegeContentListResponse> transferResponseList = new ArrayList<>();
-        for (VegeContent vegeContent : tradeList) {
+        ArrayList<VegeContentListResponse> vegeResponseList = new ArrayList<>();
+        for (VegeContent vegeContent : vegeContentList) {
             VegeContentListResponse transferResponse = VegeContentListResponse.builder()
                     .contentId(vegeContent.getVegeContentId())
                     .authorName(vegeContent.getAuthor().getUserName())
@@ -69,10 +69,10 @@ public class VegeContentListResponse {
                     .dateUpdated(vegeContent.getUpdatedDate())
                     .build();
 
-            transferResponseList.add(transferResponse);
+            vegeResponseList.add(transferResponse);
         }
 
-        return transferResponseList;
+        return vegeResponseList;
     }
 
 }
