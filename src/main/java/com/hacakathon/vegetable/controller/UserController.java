@@ -1,7 +1,6 @@
 package com.hacakathon.vegetable.controller;
 
 
-import com.hacakathon.vegetable.dto.content.user.*;
 import com.hacakathon.vegetable.dto.user.*;
 import com.hacakathon.vegetable.service.UserService;
 import lombok.RequiredArgsConstructor;

@@ -30,7 +30,6 @@ public class UserGetInfoResponse {
         this.userName = userName;
         this.phoneNum = phoneNum;
         this.vote = vote;
-
     }
 
 
