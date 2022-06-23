@@ -5,8 +5,11 @@ import com.hacakathon.vegetable.domain.RecepiContent;
 import com.hacakathon.vegetable.domain.VegeContent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ImgInfoRepository extends JpaRepository<ImgInfo, Long> {
-    ImgInfo findByVegeContent(VegeContent vegeContent);
+import java.util.ArrayList;
+import java.util.List;
 
-    ImgInfo findByRecepiContent(RecepiContent recepiContent);
+public interface ImgInfoRepository extends JpaRepository<ImgInfo, Long> {
+    ArrayList<ImgInfo> findByVegeContent(VegeContent vegeContent);
+
+    ArrayList<ImgInfo> findByRecepiContent(RecepiContent recepiContent);
 }

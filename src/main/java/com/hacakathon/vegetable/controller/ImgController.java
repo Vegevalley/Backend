@@ -5,6 +5,7 @@ import com.hacakathon.vegetable.dto.content.vege.VegeImgUploadRequest;
 import com.hacakathon.vegetable.service.ImgService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,7 +32,8 @@ public class ImgController {
         return ResponseEntity.ok(imgService.saveVegefile(authorization, contentId, file));
     }
 
-    @PostMapping("/content/recepi/img")
+    @PostMapping(value = "/content/recepi/img",
+            produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE})
     public ResponseEntity<String> saveRecepiImg(
             @RequestParam String authorization,
             @RequestParam Long contentId,
@@ -41,19 +43,19 @@ public class ImgController {
         return ResponseEntity.ok(imgService.saveRecepifile(authorization, contentId, file));
     }
 
-//    @GetMapping("/content/vege/img")
-//    public ResponseEntity<List<MultipartFile>> loadVegeImg(
-//            @RequestParam String authorization,
-//            @RequestParam Long contentId) throws IOException{
-//
-//        return ResponseEntity.ok(imgService.loadVegeImg(authorization, contentId));
-//    }
-//
-//    @GetMapping("/content/recepi/img")
-//    public ResponseEntity<List<MultipartFile>> loadRecepiImg(
-//            @RequestParam String authorization,
-//            @RequestParam Long contentId) throws IOException {
-//        return ResponseEntity.ok(imgService.loadRecepiImg(authorization, contentId));
-//    }
+    @GetMapping("/content/vege/img")
+    public ResponseEntity<List<byte[]>> loadVegeImg(
+            @RequestParam String authorization,
+            @RequestParam Long contentId) throws IOException{
+
+        return ResponseEntity.ok(imgService.loadVegeImg(authorization, contentId));
+    }
+
+    @GetMapping("/content/recepi/img")
+    public ResponseEntity<List<byte[]>> loadRecepiImg(
+            @RequestParam String authorization,
+            @RequestParam Long contentId) throws IOException {
+        return ResponseEntity.ok(imgService.loadRecepiImg(authorization, contentId));
+    }
 
 }
