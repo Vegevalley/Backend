@@ -1,5 +1,6 @@
 package com.hacakathon.vegetable.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,16 +12,14 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 @Configuration
 @EnableWebSocket
-@ComponentScan
+@RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    @Autowired
-    private SocketTextHandler socketTextHandler;
+    private final SocketTextHandler socketTextHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(socketTextHandler, "/chat")
-                .setAllowedOrigins("*")
-                .withSockJS();
+        registry.addHandler(socketTextHandler, "ws/chat")
+                .setAllowedOrigins("*");
     }
 }
