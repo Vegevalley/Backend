@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="vote_content")
+@Table(name="VOTE_CONTENT")
 public class VoteContent {
     @Id
     @Column(name="GOOD_CONTENT_ID")

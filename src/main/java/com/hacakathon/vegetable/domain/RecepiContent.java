@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="recipe_content")
+@Table(name="RECIPE_CONTENT_ID")
 public class RecepiContent {
     @Id
     @Column(name="RECIPE_CONTENT_ID")
