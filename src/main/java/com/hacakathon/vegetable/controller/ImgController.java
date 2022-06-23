@@ -21,7 +21,7 @@ import java.util.UUID;
 public class ImgController {
 
     private final ImgService imgService;
-
+// PostMan작업을 위해서 Body의 form_data로 패킷을 날려야함, 안드로이드의 경우 multipart/form-data로 전송하면 된다
     @PostMapping("/content/vege/img")
     public ResponseEntity<String> saveVegeImg(
             @RequestParam String authorization,
