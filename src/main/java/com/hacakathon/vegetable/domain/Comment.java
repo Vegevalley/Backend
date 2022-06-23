@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="COMMENT")
+@Table(name="comment")
 public class Comment {
     @Id
     @Column(name="COMMENT_ID")
