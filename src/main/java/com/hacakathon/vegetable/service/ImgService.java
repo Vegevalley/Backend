@@ -9,12 +9,17 @@ import com.hacakathon.vegetable.repository.UserRepository;
 import com.hacakathon.vegetable.repository.VegeContentRepository;
 import io.jsonwebtoken.Jwt;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -70,13 +75,42 @@ public class ImgService {
         return "업로드 성공";
     }
 
-//    public List<MultipartFile> loadVegeImg(String authorization, Long contentId) throws IOException{
-//
-//        return List<MultipartFile>;
-//    }
-//
-//    public List<MultipartFile>loadRecepiImg(String authorization, Long contentId) throws IOException{
-//
-//        return List<MultipartFile>;
-//    }
+    public List<byte[]> loadVegeImg(String authorization, Long contentId) throws IOException{
+        List<ImgInfo> imgInfoList = imgInfoRepository.findByVegeContent(vegeContentRepository.findByVegeContentId(contentId));
+        List<byte[]> imgList = new ArrayList<>();
+        if (imgInfoList == null) {
+            throw new IOException("존재하지 않는 파일");
+        }
+        else {
+            for (int i=0;i<imgInfoList.size();i++) {
+                Path uploadPath = Paths.get(imgInfoList.get(i).getImgName());
+                if (!uploadPath.toFile().exists()) {
+                    throw new RuntimeException("파일 없음");
+                }
+                byte[] file = FileUtils.readFileToByteArray(uploadPath.toFile());
+                imgList.add(file);
+            }
+        }
+        return imgList;
+    }
+
+    public List<byte[]>loadRecepiImg(String authorization, Long contentId) throws IOException{
+
+        List<ImgInfo> imgInfoList = imgInfoRepository.findByRecepiContent(recipeContentRepository.findByRecepiContentId(contentId));
+        List<byte[]> imgList = new ArrayList<>();
+        if (imgInfoList == null) {
+            throw new IOException("존재하지 않는 파일");
+        }
+        else {
+            for (int i=0;i<imgInfoList.size();i++) {
+                Path uploadPath = Paths.get(imgInfoList.get(i).getImgName() + "." + imgInfoList.get(i).getImgEXE());
+                if (!uploadPath.toFile().exists()) {
+                    throw new RuntimeException("파일 없음");
+                }
+                byte[] file = FileUtils.readFileToByteArray(uploadPath.toFile());
+                imgList.add(file);
+            }
+        }
+        return imgList;
+    }
 }
