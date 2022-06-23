@@ -21,6 +21,4 @@ public class EMD {
     @Column(name="EMD_NAME")
     private String emdName;
 
-    @OneToMany(mappedBy = "emd")
-    private List<VegeContent> vegeContentlist;
 }
