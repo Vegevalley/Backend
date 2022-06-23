@@ -9,17 +9,17 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/chat")
 public class ChatController {
     private final ChatService chatService;
 
-    @PostMapping
+    @PostMapping("/chat")
     public ChatRoom createRoom(@RequestBody String name) {
         return chatService.createRoom(name);
     }
 
-    @GetMapping
+    @GetMapping("/chat")
     public List<ChatRoom> findAllRoom() {
         return chatService.findAllRoom();
     }
+
 }
