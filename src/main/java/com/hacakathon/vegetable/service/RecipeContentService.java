@@ -83,9 +83,12 @@ public class RecipeContentService {
     }
 
     public List<RecepiContentListResponse> contentListSearch(ContentListSearchRequest contentListSearchRequest){
-        List<RecepiContent> allContentList = recipeContentRepository.findByTitleContains(contentListSearchRequest.getSearchText());
+        String searchText = contentListSearchRequest.getSearchText();
+        Pageable pageable = PageRequest.of(contentListSearchRequest.getPage()-1, 10);
+        List<RecepiContentListResponse> allContentList =
+                RecepiContentListResponse.toDtoList(recipeContentRepository.findByTitleContainsOrMainTextContains(searchText, searchText, pageable));
 
-        return RecepiContentListResponse.toDtoList(allContentList);
+        return allContentList;
     }
 
     public RecepiContentDto getContentMain (ContentMainRequest contentMainRequest){

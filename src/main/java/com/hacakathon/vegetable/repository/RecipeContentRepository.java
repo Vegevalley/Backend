@@ -15,5 +15,5 @@ public interface RecipeContentRepository extends JpaRepository<RecepiContent, Lo
 
     Page<RecepiContent> findAll(Pageable pageable);
 
-    List<RecepiContent> findByTitleContains(String title);
+    List<RecepiContent> findByTitleContainsOrMainTextContains(String title, String mainText, Pageable pageable);
 }
